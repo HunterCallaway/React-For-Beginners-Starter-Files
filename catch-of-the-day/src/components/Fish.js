@@ -9,6 +9,8 @@ class Fish extends React.Component {
 		const desc = this.props.details.desc;
 		const status = this.props.details.status;
 
+		const isAvailable = status === 'available';
+
 		return (
 			<li className="menu-fish">
 				<img src={image} alt={name} />
@@ -16,7 +18,9 @@ class Fish extends React.Component {
 					<span className="price">{formatPrice(price)}</span>
 				</h3>
 				<p>{desc}</p>
-				<button>Add To Cart</button>
+				<button disabled={!isAvailable}>
+					{isAvailable ? 'Add To Cart' : 'Sold Out!'}
+				</button>
 			</li>
 		);
 	}
